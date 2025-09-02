@@ -1,0 +1,32 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FablabWebAPI.Entities
+{
+    public class Usuario
+    {
+        public int Id { get; set; }
+
+        public string Nombre { get; set; }
+
+        public string Apellido { get; set; }
+
+        public string Rut { get; set; }
+
+        [EmailAddress]
+        public string CorreoInstitucional { get; set; }
+        public string Contraseña { get; set; }
+
+        public string Carrera { get; set; } 
+
+        public int? LaboratorioId { get; set; }
+
+        public int? RolId { get; set; }
+
+        public Laboratorio? Laboratorio { get; set; }
+
+        public Rol? Rol { get; set; }
+
+        public List<Proyectos> Proyectos { get; set; } = [];
+
+    }
+}
