@@ -13,7 +13,7 @@ namespace FablabWebAPI.Entities
         [Required,MinLength(10)]
         public string Epigrafe { get; set; }
 
-        [Required, MinLength(10)]
+        [Required, MaxLength(40)]
         public string Autor { get; set; }
         public DateTime? FechaPublicacion { get; set; }
         public string Contenido { get; set; }

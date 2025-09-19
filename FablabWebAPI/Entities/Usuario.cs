@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace FablabWebAPI.Entities
 {
-    public class Usuario
+    public class Usuario : IdentityUser
     {
         public int Id { get; set; }
 
@@ -14,7 +15,6 @@ namespace FablabWebAPI.Entities
 
         [EmailAddress]
         public string CorreoInstitucional { get; set; }
-        public string Contraseña { get; set; }
 
         public string Carrera { get; set; } 
 

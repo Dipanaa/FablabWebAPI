@@ -161,3 +161,10 @@ C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Debug\net9.0\rjsmcshtm
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\FluentValidation.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Debug\net9.0\FablabWebAPI.sourcelink.json
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll

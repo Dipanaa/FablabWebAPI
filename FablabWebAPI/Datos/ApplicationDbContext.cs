@@ -1,9 +1,10 @@
 ﻿using FablabWebAPI.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FablabWebAPI.Datos
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<Usuario>
     {
 
         public ApplicationDbContext(DbContextOptions options) : base(options){

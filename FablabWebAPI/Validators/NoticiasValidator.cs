@@ -8,6 +8,7 @@ namespace FablabWebAPI.Validators
         public NoticiasValidator() {
 
             RuleFor(noticia => noticia.Estado).Must(estado => estado == "Activo" || estado == "Deshabilitado");
+            
 
         }
 

@@ -1,5 +1,57 @@
 [
   {
+    "ContainingType": "FablabWebAPI.Controllers.Autenticacion.UsuariosAutenticacionController",
+    "Method": "login",
+    "RelativePath": "api/autenticacion/usuarios/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "credencialesLoginDto",
+        "Type": "FablabWebAPI.DTOs.Autenticacion.CredencialesLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FablabWebAPI.DTOs.Autenticacion.AutenticacionRespuestaDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FablabWebAPI.Controllers.Autenticacion.UsuariosAutenticacionController",
+    "Method": "RegistrarUsuario",
+    "RelativePath": "api/autenticacion/usuarios/registro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "credencialesDto",
+        "Type": "FablabWebAPI.DTOs.Autenticacion.CredencialesRegistroDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FablabWebAPI.DTOs.Autenticacion.AutenticacionRespuestaDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FablabWebAPI.Controllers.LaboratorioController",
     "Method": "Get",
     "RelativePath": "api/laboratorio",
