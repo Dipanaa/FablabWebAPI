@@ -1,9 +1,14 @@
-﻿using FablabWebAPI.DTOs.Autenticacion;
+﻿using AutoMapper;
+using FablabWebAPI.DTOs;
+using FablabWebAPI.DTOs.Autenticacion;
 using FablabWebAPI.Entities;
+using FablabWebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security;
 using System.Security.Claims;
 using System.Text;
 
@@ -18,12 +23,17 @@ namespace FablabWebAPI.Controllers.Autenticacion
         private readonly UserManager<Usuario> userManager;
         private readonly IConfiguration configuration;
         private readonly SignInManager<Usuario> signInManager;
+        private readonly IMapper autoMapper;
+        private readonly IServicioUsuarios servicioUsuarios;
 
-        public UsuariosAutenticacionController(UserManager<Usuario> userManager, IConfiguration configuration, SignInManager<Usuario> signInManager)
+        public UsuariosAutenticacionController(UserManager<Usuario> userManager, IConfiguration configuration, 
+            SignInManager<Usuario> signInManager, IMapper autoMapper, IServicioUsuarios servicioUsuarios)
         {
             this.userManager = userManager;
             this.configuration = configuration;
             this.signInManager = signInManager;
+            this.autoMapper = autoMapper;
+            this.servicioUsuarios = servicioUsuarios;
         }
 
         [HttpPost("registro")]
@@ -83,7 +93,7 @@ namespace FablabWebAPI.Controllers.Autenticacion
             }
 
 
-            var resultado = await signInManager.CheckPasswordSignInAsync(usuario, credencialesLoginDto.Password,lockoutOnFailure: false);
+            var resultado = await signInManager.CheckPasswordSignInAsync(usuario, credencialesLoginDto.Contrasena,lockoutOnFailure: false);
 
             if (resultado.Succeeded)
             {
@@ -96,22 +106,42 @@ namespace FablabWebAPI.Controllers.Autenticacion
 
                 return BadRequest(); //TODO: Error personalizado
             }
-
-
-
-
             
         }
+
+
+  
+
+        [HttpGet("check-status")]
+        public async Task<ActionResult<AutenticacionRespuestaDto>> CheckearStatusToken()
+        {
+            var usuario = await servicioUsuarios.ObtenerUsuario();
+
+
+            if(usuario is null)
+            {
+                return NotFound();
+            }
+
+            return await ConstruirJwt(usuario.Email!);
+        }
+
+
+
 
         private async Task<AutenticacionRespuestaDto> ConstruirJwt(string email)
 
         {
+            //Se agrego datos de usuario al token, conversar con equipo para modificacion
+
+
             var claims = new List<Claim>
             { 
                 new Claim("email", email)
             };
 
             var usuario = await userManager.FindByEmailAsync(email);
+            var usuarioDto = autoMapper.Map<UsuarioDto>(usuario);
             var claimsUsuarioDB = await userManager.GetClaimsAsync(usuario!);
 
             claims.AddRange(claimsUsuarioDB);
@@ -134,7 +164,7 @@ namespace FablabWebAPI.Controllers.Autenticacion
             {
                 token = token,
                 Expiracion = expiracionJwt,
-
+                Usuario = usuarioDto
             };
 
 

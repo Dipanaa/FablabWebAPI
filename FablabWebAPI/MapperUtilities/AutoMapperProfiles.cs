@@ -9,9 +9,16 @@ namespace FablabWebAPI.MapperUtilities
 
         public AutoMapperProfiles() {
 
+            //Mappers de Noticias
+            CreateMap<Noticias, NoticiaDto>().ReverseMap();
 
-            CreateMap<Noticias, NoticiaDto>();
-            CreateMap<NoticiaDto, Noticias>();
+            //Mapper de Usuarios
+            CreateMap<Usuario,UsuarioDto>().ReverseMap();
+            CreateMap<Usuario, UsuarioDto>()
+                .ForMember(userDto => userDto.Telefono, config => config.MapFrom(user => user.PhoneNumber));
+
+
+
 
 
 

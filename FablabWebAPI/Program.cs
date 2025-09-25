@@ -1,10 +1,7 @@
 
-
-
-
-
 using FablabWebAPI.Datos;
 using FablabWebAPI.Entities;
+using FablabWebAPI.Services;
 using FablabWebAPI.Validators;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
@@ -17,11 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 //SERVICIOS
 
+//Servicios personalizados
+builder.Services.AddTransient<IServicioUsuarios,ServicioUsuarios>();
+    
 //FluentValidations Validadores de entidades
 
 builder.Services.AddScoped<IValidator<Noticias>, NoticiasValidator>();
-
-
 
 //Servicio identity con configuracion de entidades
 builder.Services.AddIdentityCore<Usuario>()
@@ -64,7 +62,7 @@ builder.Services.AddCors( options =>
     {
         options.AddPolicy("OrigenDeAdminFablab", builder =>
         {
-            builder.WithOrigins(["http://localhost:4200", "http://localhost:59318"]) //TODO: Colocar en una parametro de configuracion
+            builder.WithOrigins(["http://localhost:4200", "http://localhost:51323"]) //TODO: Colocar en una parametro de configuracion
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();

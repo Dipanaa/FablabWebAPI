@@ -20,11 +20,11 @@ namespace FablabWebAPI.Entities
 
         public int? LaboratorioId { get; set; }
 
-        public int? RolId { get; set; }
+        public int? RolId { get; set; } = 2; //TODO: Equivale a miembro pero se debe pasar a Roles de identity
 
         public Laboratorio? Laboratorio { get; set; }
 
-        public Rol? Rol { get; set; }
+        public Rol? Rol { get; set; } 
 
         public List<Proyectos> Proyectos { get; set; } = [];
 
