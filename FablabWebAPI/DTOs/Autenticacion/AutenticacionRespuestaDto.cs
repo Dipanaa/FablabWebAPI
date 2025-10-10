@@ -1,4 +1,6 @@
-﻿namespace FablabWebAPI.DTOs.Autenticacion
+﻿using FablabWebAPI.DTOs.UsuariosDtos;
+
+namespace FablabWebAPI.DTOs.Autenticacion
 {
     public class AutenticacionRespuestaDto
     {

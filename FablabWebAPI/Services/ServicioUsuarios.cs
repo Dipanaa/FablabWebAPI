@@ -28,7 +28,5 @@ namespace FablabWebAPI.Services
             return await userManager.FindByEmailAsync(emailClaim.Value);
         }
 
-
-
     }
 }

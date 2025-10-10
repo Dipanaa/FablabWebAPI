@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FablabWebAPI.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace FablabWebAPI.Entities
+namespace FablabWebAPI.DTOs.UsuariosDtos
 {
-    public class Usuario : IdentityUser<int>
+    public class UsuarioDto
     {
-
         public string Nombre { get; set; }
 
         public string Apellido { get; set; }
@@ -15,15 +14,17 @@ namespace FablabWebAPI.Entities
         [EmailAddress]
         public string CorreoInstitucional { get; set; }
 
-        public string Carrera { get; set; } 
+        public string Carrera { get; set; }
+
+        public string Telefono { get; set; }
 
         public int? LaboratorioId { get; set; }
 
-        public int? RolId { get; set; } = 2; //TODO: Equivale a miembro pero se debe pasar a Roles de identity
-
         public Laboratorio? Laboratorio { get; set; }
 
-        public Rol? Rol { get; set; } 
+        public int? RolId { get; set; } = 2;
+
+        public Rol? Rol { get; set; }
 
         public List<Proyectos> Proyectos { get; set; } = [];
 

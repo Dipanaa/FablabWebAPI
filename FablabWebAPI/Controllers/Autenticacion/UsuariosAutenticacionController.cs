@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
-using FablabWebAPI.DTOs;
+using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.Autenticacion;
+using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
 using FablabWebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security;
@@ -25,15 +27,17 @@ namespace FablabWebAPI.Controllers.Autenticacion
         private readonly SignInManager<Usuario> signInManager;
         private readonly IMapper autoMapper;
         private readonly IServicioUsuarios servicioUsuarios;
+        private readonly ApplicationDbContext dbcontext;
 
         public UsuariosAutenticacionController(UserManager<Usuario> userManager, IConfiguration configuration, 
-            SignInManager<Usuario> signInManager, IMapper autoMapper, IServicioUsuarios servicioUsuarios)
+            SignInManager<Usuario> signInManager, IMapper autoMapper, IServicioUsuarios servicioUsuarios, ApplicationDbContext dbcontext)
         {
             this.userManager = userManager;
             this.configuration = configuration;
             this.signInManager = signInManager;
             this.autoMapper = autoMapper;
             this.servicioUsuarios = servicioUsuarios;
+            this.dbcontext = dbcontext;
         }
 
         [HttpPost("registro")]
@@ -129,7 +133,7 @@ namespace FablabWebAPI.Controllers.Autenticacion
 
 
 
-        private async Task<AutenticacionRespuestaDto> ConstruirJwt(string email)
+        private async Task<ActionResult<AutenticacionRespuestaDto>> ConstruirJwt(string email)
 
         {
             //Se agrego datos de usuario al token, conversar con equipo para modificacion
@@ -139,6 +143,15 @@ namespace FablabWebAPI.Controllers.Autenticacion
             { 
                 new Claim("email", email)
             };
+
+            var verificarDuplicados = await dbcontext.Usuario.Where(x => x.Email == email).ToListAsync();
+
+            if (verificarDuplicados.Count() > 1)
+            {
+                return BadRequest();
+            }
+
+
 
             var usuario = await userManager.FindByEmailAsync(email);
             var usuarioDto = autoMapper.Map<UsuarioDto>(usuario);
