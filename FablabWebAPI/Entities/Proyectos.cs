@@ -12,9 +12,8 @@
 
         public string? FechaInicio { get; set; }
 
-        public int? UsuarioId { get; set; }
+        public List<UsuarioProyecto> Usuarios { get; set; } = [];
 
-        public Usuario? Usuario { get; set; }
 
     }
 }

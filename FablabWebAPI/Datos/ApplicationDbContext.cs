@@ -22,6 +22,26 @@ namespace FablabWebAPI.Datos
 
         public DbSet<Proyectos> Proyectos { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<UsuarioProyecto>()
+                .HasKey(up => new { up.UsuarioId, up.ProyectosId });
+
+            builder.Entity<UsuarioProyecto>()
+                .HasOne(up => up.Usuario)
+                .WithMany(up => up.Proyectos)
+                .HasForeignKey(up => up.UsuarioId);
+
+            builder.Entity<UsuarioProyecto>()
+                .HasOne(up => up.Proyectos)
+                .WithMany(up => up.Usuarios)
+                .HasForeignKey(up => up.ProyectosId);
+
+            base.OnModelCreating(builder);
+        }
+
+
+
 
     }
 }

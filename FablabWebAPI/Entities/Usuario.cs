@@ -25,7 +25,7 @@ namespace FablabWebAPI.Entities
 
         public Rol? Rol { get; set; } 
 
-        public List<Proyectos> Proyectos { get; set; } = [];
+        public List<UsuarioProyecto> Proyectos { get; set; } = [];
 
     }
 }
