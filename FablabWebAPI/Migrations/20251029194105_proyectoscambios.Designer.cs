@@ -4,6 +4,7 @@ using FablabWebAPI.Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FablabWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251029194105_proyectoscambios")]
+    partial class proyectoscambios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasIndex("LaboratorioId");
 
-                    b.ToTable("FormulariosIngreso", (string)null);
+                    b.ToTable("FormulariosIngreso");
                 });
 
             modelBuilder.Entity("FablabWebAPI.Entities.Laboratorio", b =>
@@ -80,7 +83,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Laboratorio", (string)null);
+                    b.ToTable("Laboratorio");
                 });
 
             modelBuilder.Entity("FablabWebAPI.Entities.Noticias", b =>
@@ -128,7 +131,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasIndex("LaboratorioId");
 
-                    b.ToTable("Noticias", (string)null);
+                    b.ToTable("Noticias");
                 });
 
             modelBuilder.Entity("FablabWebAPI.Entities.Proyectos", b =>
@@ -160,7 +163,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Proyectos", (string)null);
+                    b.ToTable("Proyectos");
                 });
 
             modelBuilder.Entity("FablabWebAPI.Entities.Rol", b =>
@@ -181,7 +184,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rol", (string)null);
+                    b.ToTable("Rol");
                 });
 
             modelBuilder.Entity("FablabWebAPI.Entities.Usuario", b =>
@@ -297,7 +300,7 @@ namespace FablabWebAPI.Migrations
 
                     b.HasIndex("ProyectosId");
 
-                    b.ToTable("UsuarioProyecto", (string)null);
+                    b.ToTable("UsuarioProyecto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>

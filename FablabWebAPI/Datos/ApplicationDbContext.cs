@@ -22,6 +22,8 @@ namespace FablabWebAPI.Datos
 
         public DbSet<Proyectos> Proyectos { get; set; }
 
+        public DbSet<UsuarioProyecto> UsuarioProyecto { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UsuarioProyecto>()

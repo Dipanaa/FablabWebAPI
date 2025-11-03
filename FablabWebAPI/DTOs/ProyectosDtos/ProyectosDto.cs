@@ -1,6 +1,6 @@
-﻿namespace FablabWebAPI.Entities
+﻿namespace FablabWebAPI.DTOs.ProyectosDtos
 {
-    public class Proyectos
+    public class ProyectosDto
     {
         public int Id { get; set; }
         public string Titulo { get; set; }
@@ -10,9 +10,5 @@
         public string AreaAplicacion { get; set; }
 
         public DateTime? FechaInicio { get; set; }
-
-        public List<UsuarioProyecto> Usuarios { get; set; } = [];
-
-
     }
 }

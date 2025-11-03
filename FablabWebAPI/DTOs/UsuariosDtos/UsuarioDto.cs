@@ -27,7 +27,7 @@ namespace FablabWebAPI.DTOs.UsuariosDtos
 
         public Rol? Rol { get; set; }
 
-        public List<Proyectos> Proyectos { get; set; } = [];
+        //public List<Proyectos> Proyectos { get; set; } = [];
 
     }
 }
