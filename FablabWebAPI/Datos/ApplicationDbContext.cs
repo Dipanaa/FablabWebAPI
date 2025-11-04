@@ -20,6 +20,9 @@ namespace FablabWebAPI.Datos
 
         public DbSet<Rol> Rol { get; set; }
 
+        public DbSet<Inventario> Inventario { get; set; }
+
+
         public DbSet<Proyectos> Proyectos { get; set; }
 
         public DbSet<UsuarioProyecto> UsuarioProyecto { get; set; }
