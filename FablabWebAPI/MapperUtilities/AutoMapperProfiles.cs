@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
-using FablabWebAPI.DTOs;
+using FablabWebAPI.DTOs.Autenticacion;
+using FablabWebAPI.DTOs.InventariosController;
+using FablabWebAPI.DTOs.NoticiasDtos;
+using FablabWebAPI.DTOs.NotificacionesDtos;
 using FablabWebAPI.DTOs.ProyectosDtos;
 using FablabWebAPI.DTOs.UsuarioProyectoDtos;
 using FablabWebAPI.DTOs.UsuariosDtos;
@@ -12,10 +15,11 @@ namespace FablabWebAPI.MapperUtilities
 
         public AutoMapperProfiles() {
 
-            //Mappers de Noticias
+            //MAPPERS DE NOTICIAS
+
             CreateMap<Noticias, NoticiaDto>().ReverseMap();
 
-            //Mapper de Usuarios
+            //MAPPERS DE USUARIOS
 
             //Datos normales 
             CreateMap<Usuario,UsuarioDto>().ReverseMap();
@@ -33,9 +37,7 @@ namespace FablabWebAPI.MapperUtilities
                 .IncludeMembers(up => up.Usuario);
 
 
-
-            //Mappers de proyectos
-
+            //MAPPERS DE PROYECTOS
 
             //Datos create con proyectos y usuario en coleccion
 
@@ -48,9 +50,6 @@ namespace FablabWebAPI.MapperUtilities
             CreateMap<Proyectos, ProyectoConUsuariosDtos>()
                 .ForMember(pcu => pcu.Usuarios, config => config.MapFrom(pro => pro.Usuarios.Select(up => up.Usuario)));
 
-
-
-
             //CreateMap<CreateProyectosDto, UsuarioProyecto>()
             //    .ForMember(up => up.Proyectos,
             //    config => config.MapFrom(dto =>
@@ -61,12 +60,18 @@ namespace FablabWebAPI.MapperUtilities
                 .ForMember(dto => dto.Id, config => config.MapFrom(up => up.ProyectosId))
                 .IncludeMembers(up => up.Proyectos);
 
+            //MAPPERS DE INVENTARIO
 
+            CreateMap<Inventario, InventarioItemsDto>().ReverseMap();
 
+            //MAPPERS DE PRUEBAAA PARA FORMULARIOS DE INGRESO
 
+            CreateMap<CredencialesRegistroDto, FormularioIngresoDto>();
 
+            CreateMap<FormulariosIngreso, FormularioIngresoDto>().ReverseMap();
 
-
+            //MAPPERS DE NOTIFICACIONES
+            CreateMap<FormulariosIngreso, NotificacionesRegistroDto>();
 
 
 

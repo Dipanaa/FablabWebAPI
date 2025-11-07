@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FablabWebAPI.DTOs
+namespace FablabWebAPI.DTOs.NoticiasDtos
 {
     public class NoticiaDto
     {

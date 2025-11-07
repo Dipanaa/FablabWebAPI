@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2025-11-05T01:25:10.7608822Z"
+    },
+    "identityapp1": {
+      "restored": true,
+      "restoreTime": "2025-11-05T01:19:53.3032235Z"
+    }
+  },
+  "parameters": {
+    "mssql1.serviceConnectorResourceGroupName": {
+      "Name": "mssql1.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "fablabResource"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "fablabResource"
+    },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "4d543da4-f21f-4a24-93b0-95aaf63e485b"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FablabWebAPI.Datos;
-using FablabWebAPI.DTOs;
+using FablabWebAPI.DTOs.NoticiasDtos;
 using FablabWebAPI.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;

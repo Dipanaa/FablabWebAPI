@@ -62,7 +62,7 @@ builder.Services.AddCors( options =>
     {
         options.AddPolicy("OrigenDeAdminFablab", builder =>
         {
-            builder.WithOrigins(["http://localhost:4200", "http://localhost:51323"]) //TODO: Colocar en una parametro de configuracion
+            builder.WithOrigins(["http://localhost:4200", "http://localhost:51323", "http://10.0.2.2:3000"]) //TODO: Colocar en una parametro de configuracion
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
@@ -78,6 +78,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlS
 
 
 var app = builder.Build();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbcontext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//    if (dbcontext.Database.IsRelational())
+//    {
+//        dbcontext.Database.Migrate();
+//    }
+//}
+
+
+
 
 
 //Area de Middlewares

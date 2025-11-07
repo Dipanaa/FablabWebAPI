@@ -25,6 +25,7 @@ namespace FablabWebAPI.Controllers
             this.userManager = userManager;
         }
 
+        
         [HttpGet]
         public async Task<IEnumerable<UsuarioDto>> Get()
         {
@@ -75,6 +76,15 @@ namespace FablabWebAPI.Controllers
             if (usuario is null)
             {
                 return NotFound();
+            }
+
+            if (usuario.RolId! != 1) //Es administrador
+            {
+                return Problem(
+                    title: "Permiso denegado",
+                    detail: "No cuentas con los permisos para realizar esta accion",
+                    statusCode: StatusCodes.Status403Forbidden
+                    );
             }
 
             await userManager.DeleteAsync(usuario);

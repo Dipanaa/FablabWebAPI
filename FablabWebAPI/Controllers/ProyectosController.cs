@@ -67,6 +67,16 @@ namespace FablabWebAPI.Controllers
             }
 
             var proyectoUsuarioMappeado = mapper.Map<Proyectos>(proyectosDto);
+
+            if (usuariosExistentes.Count() > 1)
+            {
+                foreach(var usuario in proyectoUsuarioMappeado.Usuarios)
+                {
+                    usuario.Tipo = "Grupo";
+                }
+            }
+
+
             context.Add(proyectoUsuarioMappeado);
             await this.context.SaveChangesAsync();
             return Ok();

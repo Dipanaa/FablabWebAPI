@@ -46,7 +46,7 @@ namespace FablabWebAPI.Controllers.Autenticacion
 
             var usuario = new Usuario
             {
-                UserName = credencialesDto.Nombre.Replace(" ",""), //Reemplazar espacios
+                UserName = credencialesDto.Nombre.Replace(" ", ""), //Reemplazar espacios
                 Nombre = credencialesDto.Nombre, //de lab
                 Email = credencialesDto.Email,
                 CorreoInstitucional = credencialesDto.Email, //de lab
@@ -57,6 +57,16 @@ namespace FablabWebAPI.Controllers.Autenticacion
 
             };
 
+            //Creacion de formulario de ingreso para notificaciones
+
+            var formularioDeIngreso = autoMapper.Map<FormularioIngresoDto>(credencialesDto);
+
+            var formularioDeIngresoMappeado = autoMapper.Map<FormulariosIngreso>(formularioDeIngreso);
+            dbcontext.Add(formularioDeIngresoMappeado);
+            await dbcontext.SaveChangesAsync();
+            
+
+            //Creacion de usuarios
             var crearUsuario = await userManager.CreateAsync(usuario,credencialesDto.Contrasena!);
 
 
@@ -77,8 +87,6 @@ namespace FablabWebAPI.Controllers.Autenticacion
 
                 }
                 return ValidationProblem();
-
-
             }
 
         }
