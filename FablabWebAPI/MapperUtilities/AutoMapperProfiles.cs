@@ -30,11 +30,17 @@ namespace FablabWebAPI.MapperUtilities
             CreateMap<Usuario, UsuarioDto>()
                 .ForMember(userDto => userDto.Telefono, config => config.MapFrom(user => user.PhoneNumber));
 
-            //Datos UsuarioProyecto a usuarios
-
+            //Datos UsuarioProyecto a usuario
             CreateMap<UsuarioProyecto, UsuarioDto>()
                 .ForMember(dto => dto.Id, config => config.MapFrom(up => up.UsuarioId))
                 .IncludeMembers(up => up.Usuario);
+
+            //Usuario con foto
+            CreateMap<UsuarioCreateDto, Usuario>()
+                .ForMember(user => user.ImgUrl, config => config.Ignore());
+          
+
+
 
 
             //MAPPERS DE PROYECTOS

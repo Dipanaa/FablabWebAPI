@@ -2,6 +2,7 @@
 using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
+using FablabWebAPI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,15 @@ namespace FablabWebAPI.Controllers
 
         private readonly IMapper mapper;
         private readonly UserManager<Usuario> userManager;
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private const string contenedor = "Usuarios";
 
-        public UsuariosController(ApplicationDbContext context, IMapper autoMapper, UserManager<Usuario> userManager) {
+        public UsuariosController(ApplicationDbContext context, IMapper autoMapper, UserManager<Usuario> userManager, IAlmacenadorArchivos almacenadorArchivos) {
 
             this.context = context;
             this.mapper = autoMapper;
             this.userManager = userManager;
+            this.almacenadorArchivos = almacenadorArchivos;
         }
 
         
@@ -47,6 +51,24 @@ namespace FablabWebAPI.Controllers
             await this.context.SaveChangesAsync();
             return Ok();
         }
+
+        //Este Post es con foto, verificar su uso en movil, ESTE ENDPOINT ES SOLO DE TESTING
+        [HttpPost]
+        public async Task<ActionResult> PostUsuarioFoto([FromForm] UsuarioCreateDto usuarioCreateDto)
+        {
+            var usuarioMappeado = mapper.Map<Usuario>(usuarioCreateDto);
+
+            if(usuarioCreateDto.ImgUrl is not null)
+            {
+                var urlImg = await almacenadorArchivos.Agregar(contenedor, usuarioCreateDto.ImgUrl);
+                usuarioMappeado.ImgUrl = urlImg;
+            }
+
+            context.Add(usuarioMappeado);
+            await this.context.SaveChangesAsync();
+            return Ok();
+        }
+
 
 
         [HttpPut("{id:int}")] 

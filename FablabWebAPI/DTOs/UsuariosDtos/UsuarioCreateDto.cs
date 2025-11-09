@@ -1,11 +1,9 @@
-﻿using FablabWebAPI.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FablabWebAPI.DTOs.UsuariosDtos
 {
-    public class UsuarioDto
+    public class UsuarioCreateDto
     {
-        public int Id { get; set; } 
         public string Nombre { get; set; }
 
         public string Apellido { get; set; }
@@ -21,15 +19,8 @@ namespace FablabWebAPI.DTOs.UsuariosDtos
 
         public int? LaboratorioId { get; set; }
 
-        public string? ImgUrl { get; set; }
+        public IFormFile? ImgUrl { get; set; }
 
-        public Laboratorio? Laboratorio { get; set; }
-
-        public int? RolId { get; set; } = 2;
-
-        public Rol? Rol { get; set; }
-
-        //public List<Proyectos> Proyectos { get; set; } = [];
 
     }
 }

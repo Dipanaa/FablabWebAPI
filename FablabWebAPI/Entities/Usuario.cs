@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FablabWebAPI.Entities
@@ -15,7 +16,10 @@ namespace FablabWebAPI.Entities
         [EmailAddress]
         public string CorreoInstitucional { get; set; }
 
-        public string Carrera { get; set; } 
+        public string Carrera { get; set; }
+
+        [Unicode(false)]
+        public string? ImgUrl { get; set; }
 
         public int? LaboratorioId { get; set; }
 
