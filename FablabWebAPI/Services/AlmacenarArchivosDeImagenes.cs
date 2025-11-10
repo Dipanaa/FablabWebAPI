@@ -16,6 +16,9 @@ namespace FablabWebAPI.Services
 
         public async Task<string> Agregar(string contenedor, IFormFile archivo)
         {
+
+            //TODO: Reducir calidad de imagen
+
             
             //Conexion a el storage account de azure
             var cliente = new BlobContainerClient(this.connectionString,contenedor);
@@ -40,9 +43,19 @@ namespace FablabWebAPI.Services
 
         }
 
-        public Task Borrar(string? url, string contenedor)
+        public async Task Borrar(string? url, string contenedor)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(url))
+            {
+                return;
+            }
+
+            var cliente = new BlobContainerClient(this.connectionString, contenedor);
+            await cliente.CreateIfNotExistsAsync();
+            var nombreDeArchivo = Path.GetFileName(url);
+            var blob = cliente.GetBlobClient(nombreDeArchivo);
+            await blob.DeleteIfExistsAsync();
+
         }
     }
 }

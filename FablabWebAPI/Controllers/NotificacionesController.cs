@@ -3,6 +3,7 @@ using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.Autenticacion;
 using FablabWebAPI.DTOs.NotificacionesDtos;
 using FablabWebAPI.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,21 +13,25 @@ using Microsoft.EntityFrameworkCore;
 namespace FablabWebAPI.Controllers
 {
     [ApiController]
-    [Route("/api/notificaciones")]
+    [Route("api/notificaciones")]
     public class NotificacionesController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
+        private readonly UserManager<Usuario> userManager;
+        private readonly ILogger<NotificacionesController> logger;
 
-        public NotificacionesController(ApplicationDbContext context, IMapper autoMapper)
+        public NotificacionesController(ApplicationDbContext context, IMapper autoMapper,
+            UserManager<Usuario> userManager, ILogger<NotificacionesController> logger)
         {
             this.context = context;
             this.mapper = autoMapper;
-
+            this.userManager = userManager;
+            this.logger = logger;
         }
 
         //Get de formularios de ingreso
-        [HttpGet("registro")]
+        [HttpGet("ingreso")]
         public async Task<ActionResult<IEnumerable<FormularioIngresoDto>>> Get()
         {
             var formulariosIngreso = await context.FormulariosIngreso.ToListAsync();
@@ -35,6 +40,49 @@ namespace FablabWebAPI.Controllers
             return Ok(notificacionesIngresoMappeado);
 
         }
+
+        //Post de formulario de ingreso
+        [HttpPost("ingreso/{id:int}")]
+        public async Task<ActionResult> Post(int id)
+        {
+            logger.LogWarning($"Id entrante {id}");
+
+            var formularioIngreso = await context.FormulariosIngreso.FirstOrDefaultAsync(fi => fi.Id == id);
+
+            if(formularioIngreso is null)
+            {
+                return BadRequest();
+            }
+
+            var usuarioIngreso = new Usuario
+            {
+                UserName = formularioIngreso.Nombre.Replace(" ", ""), //Reemplazar espacios
+                Nombre = formularioIngreso.Nombre, //de lab
+                Email = formularioIngreso.Email,
+                CorreoInstitucional = formularioIngreso.Email, //de lab
+                Apellido = formularioIngreso.Apellido,
+                Rut = formularioIngreso.Rut,
+                Carrera = formularioIngreso.Carrera,
+                PhoneNumber = formularioIngreso.Telefono.ToString(),
+
+            };
+
+            var usuarioCreado = await userManager.CreateAsync(usuarioIngreso, formularioIngreso.Contrasena);
+
+            if (usuarioCreado.Succeeded)
+            {
+                await context.FormulariosIngreso.Where(fi => fi.Id == formularioIngreso.Id).ExecuteDeleteAsync();
+                return Ok();
+            }
+            logger.LogWarning($"Llego al final");
+            return BadRequest();
+
+
+        }
+
+
+
+
 
     }
 }

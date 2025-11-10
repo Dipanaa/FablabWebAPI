@@ -11,6 +11,8 @@
 
         public DateTime? FechaInicio { get; set; }
 
+        public string? ImgUrl { get; set; }
+
         public List<UsuarioProyecto> Usuarios { get; set; } = [];
 
 

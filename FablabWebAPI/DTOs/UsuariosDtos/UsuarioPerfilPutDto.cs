@@ -2,7 +2,7 @@
 
 namespace FablabWebAPI.DTOs.UsuariosDtos
 {
-    public class UsuarioPutDto
+    public class UsuarioPerfilPutDto
     {
         public string Nombre { get; set; }
 
@@ -10,12 +10,10 @@ namespace FablabWebAPI.DTOs.UsuariosDtos
 
         public string Rut { get; set; }
 
-        [EmailAddress]
-        public string CorreoInstitucional { get; set; }
-
         public string Carrera { get; set; }
 
+        public string Telefono { get; set; }
 
-
+        public IFormFile? ImgUrl { get; set; }
     }
 }

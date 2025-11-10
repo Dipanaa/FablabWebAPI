@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using System.Security.Claims;
+using System.Text.Json;
 
 namespace FablabWebAPI.Controllers
 {
@@ -19,14 +21,19 @@ namespace FablabWebAPI.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<Usuario> userManager;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
-        private const string contenedor = "Usuarios";
+        private readonly ILogger<UsuariosController> logger;
+        private readonly IServicioUsuarios servicioUsuarios;
+        private const string contenedor = "usuarios";
 
-        public UsuariosController(ApplicationDbContext context, IMapper autoMapper, UserManager<Usuario> userManager, IAlmacenadorArchivos almacenadorArchivos) {
+        public UsuariosController(ApplicationDbContext context, IMapper autoMapper, UserManager<Usuario> userManager,
+            IAlmacenadorArchivos almacenadorArchivos, ILogger<UsuariosController> logger, IServicioUsuarios servicioUsuarios) {
 
             this.context = context;
             this.mapper = autoMapper;
             this.userManager = userManager;
             this.almacenadorArchivos = almacenadorArchivos;
+            this.logger = logger;
+            this.servicioUsuarios = servicioUsuarios;
         }
 
         
@@ -53,20 +60,41 @@ namespace FablabWebAPI.Controllers
         }
 
         //Este Post es con foto, verificar su uso en movil, ESTE ENDPOINT ES SOLO DE TESTING
-        [HttpPost]
-        public async Task<ActionResult> PostUsuarioFoto([FromForm] UsuarioCreateDto usuarioCreateDto)
+        [HttpPut("perfil/{id:int}")]
+        public async Task<ActionResult> PostUsuarioFoto([FromForm] UsuarioFotoMTF usuarioFotoMTF,int id)
         {
-            var usuarioMappeado = mapper.Map<Usuario>(usuarioCreateDto);
+            var usuarioDeserializado = JsonSerializer.Deserialize<UsuarioPerfilPutDto>(usuarioFotoMTF.DataUser, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            if(usuarioCreateDto.ImgUrl is not null)
+            if(usuarioDeserializado is null)
             {
-                var urlImg = await almacenadorArchivos.Agregar(contenedor, usuarioCreateDto.ImgUrl);
-                usuarioMappeado.ImgUrl = urlImg;
+                return BadRequest();
             }
 
-            context.Add(usuarioMappeado);
-            await this.context.SaveChangesAsync();
-            return Ok();
+            var usuario = await userManager.FindByIdAsync(id.ToString());
+
+            if(usuario == null)
+            {
+                return NotFound();
+            }
+
+            mapper.Map(usuarioDeserializado, usuario);
+
+            if (usuarioFotoMTF.ImgUrl is not null)
+            {                
+                logger.LogWarning("la informacion de la imagen esta siendo editada");
+                var urlImg = await almacenadorArchivos.Editar(usuario.ImgUrl,contenedor, usuarioFotoMTF.ImgUrl);
+                usuario.ImgUrl = urlImg;
+            }
+
+            var resultadoActualizacion = await userManager.UpdateAsync(usuario);
+
+            if (resultadoActualizacion.Succeeded) {
+
+                return Ok();
+            
+            }
+
+            return BadRequest();
         }
 
 
@@ -92,7 +120,11 @@ namespace FablabWebAPI.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
+            //Verificar usuario activo
+            var usuarioActivo = await servicioUsuarios.ObtenerUsuario();
 
+
+            //Usuario a eliminar
             var usuario = await userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
 
             if (usuario is null)
@@ -100,7 +132,7 @@ namespace FablabWebAPI.Controllers
                 return NotFound();
             }
 
-            if (usuario.RolId! != 1) //Es administrador
+            if (usuarioActivo.RolId! != 1) //Es administrador
             {
                 return Problem(
                     title: "Permiso denegado",

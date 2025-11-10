@@ -41,7 +41,7 @@ namespace FablabWebAPI.Controllers.Autenticacion
         }
 
         [HttpPost("registro")]
-        public async Task<ActionResult<AutenticacionRespuestaDto>> RegistrarUsuario(CredencialesRegistroDto credencialesDto)
+        public async Task<ActionResult> RegistrarUsuario(CredencialesRegistroDto credencialesDto)
         {
 
             var usuario = new Usuario
@@ -64,30 +64,32 @@ namespace FablabWebAPI.Controllers.Autenticacion
             var formularioDeIngresoMappeado = autoMapper.Map<FormulariosIngreso>(formularioDeIngreso);
             dbcontext.Add(formularioDeIngresoMappeado);
             await dbcontext.SaveChangesAsync();
+
+            return Ok();
             
 
-            //Creacion de usuarios
-            var crearUsuario = await userManager.CreateAsync(usuario,credencialesDto.Contrasena!);
+            ////Creacion de usuarios
+            //var crearUsuario = await userManager.CreateAsync(usuario,credencialesDto.Contrasena!);
 
 
-            if (crearUsuario.Succeeded)
-            {
+            //if (crearUsuario.Succeeded)
+            //{
 
-                //Crear token
-                var token = await ConstruirJwt(credencialesDto.Email);
+            //    //Crear token
+            //    var token = await ConstruirJwt(credencialesDto.Email);
 
-                return token;
+            //    return token;
 
-            }
-            else
-            {
-                foreach(var err in crearUsuario.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, err.Description);
+            //}
+            //else
+            //{
+            //    foreach(var err in crearUsuario.Errors)
+            //    {
+            //        ModelState.AddModelError(string.Empty, err.Description);
 
-                }
-                return ValidationProblem();
-            }
+            //    }
+            //    return ValidationProblem();
+            //}
 
         }
 
@@ -187,14 +189,6 @@ namespace FablabWebAPI.Controllers.Autenticacion
                 Expiracion = expiracionJwt,
                 Usuario = usuarioDto
             };
-
-
-
-
-
-
-
-
 
 
 

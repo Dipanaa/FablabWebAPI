@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Servicios personalizados
 builder.Services.AddTransient<IServicioUsuarios,ServicioUsuarios>();
+builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenarArchivosDeImagenes>();
     
 //FluentValidations Validadores de entidades
 
@@ -32,6 +33,9 @@ builder.Services.AddIdentityCore<Usuario>()
 builder.Services.AddScoped<UserManager<Usuario>>(); //Maneja   
 builder.Services.AddScoped<SignInManager<Usuario>>(); //Registra
 builder.Services.AddHttpContextAccessor();
+
+
+
 
 
 //Configuracion JWT
@@ -97,6 +101,9 @@ var app = builder.Build();
 app.UseRouting();
 
 app.UseCors("OrigenDeAdminFablab");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 //MapearControladores
 app.MapControllers();

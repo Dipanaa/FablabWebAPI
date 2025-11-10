@@ -38,17 +38,20 @@ namespace FablabWebAPI.MapperUtilities
             //Usuario con foto
             CreateMap<UsuarioCreateDto, Usuario>()
                 .ForMember(user => user.ImgUrl, config => config.Ignore());
-          
 
 
-
+            //Edicion de usuario con foto
+            CreateMap<UsuarioPerfilPutDto, Usuario>()
+                .ForMember(user => user.ImgUrl, config => config.Ignore());
 
             //MAPPERS DE PROYECTOS
 
             //Datos create con proyectos y usuario en coleccion
 
             CreateMap<CreateProyectosDto, Proyectos>()
-                .ForMember(pro => pro.Usuarios, config => config.MapFrom(dto => dto.Ids.Select(id => new UsuarioProyecto { UsuarioId = id })));
+                .ForMember(pro => pro.Usuarios, config => config.MapFrom(dto => dto.Ids.Select(id => new UsuarioProyecto { UsuarioId = id })))
+                .ForMember(pro => pro.ImgUrl, config => config.Ignore());
+                
 
             CreateMap<Proyectos, ProyectosDto>();
 
@@ -77,7 +80,13 @@ namespace FablabWebAPI.MapperUtilities
             CreateMap<FormulariosIngreso, FormularioIngresoDto>().ReverseMap();
 
             //MAPPERS DE NOTIFICACIONES
+
             CreateMap<FormulariosIngreso, NotificacionesRegistroDto>();
+
+            //Mapper para aceptar ingresos
+            CreateMap<FormulariosIngreso, Usuario>()
+                .ForMember(user => user.CorreoInstitucional, config => config.MapFrom(fi => fi.Email));
+             
 
 
 

@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\services\\almacenararchivosdeimagenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\services\\almacenararchivosdeimagenes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\controllers\\autenticacion\\usuariosautenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\controllers\\autenticacion\\usuariosautenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\entities\\formulariosingreso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\entities\\formulariosingreso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|c:\\users\\dguer\\source\\repos\\fablabwebapi\\fablabwebapi\\mapperutilities\\automapperprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D78C21-5A56-41AE-B984-6978CAB00254}|FablabWebAPI\\FablabWebAPI.csproj|solutionrelative:fablabwebapi\\mapperutilities\\automapperprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,29 +38,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "FablabWebAPI\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\appsettings.Development.json",
-              "RelativeToolTip": "FablabWebAPI\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-07T22:21:23.021Z",
-              "EditorCaption": ""
+              "DocumentIndex": 2,
+              "Title": "FormulariosIngreso.cs",
+              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Entities\\FormulariosIngreso.cs",
+              "RelativeDocumentMoniker": "FablabWebAPI\\Entities\\FormulariosIngreso.cs",
+              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Entities\\FormulariosIngreso.cs",
+              "RelativeToolTip": "FablabWebAPI\\Entities\\FormulariosIngreso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T01:12:36.395Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AlmacenarArchivosDeImagenes.cs",
-              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Services\\AlmacenarArchivosDeImagenes.cs",
-              "RelativeDocumentMoniker": "FablabWebAPI\\Services\\AlmacenarArchivosDeImagenes.cs",
-              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Services\\AlmacenarArchivosDeImagenes.cs",
-              "RelativeToolTip": "FablabWebAPI\\Services\\AlmacenarArchivosDeImagenes.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAAAnAAAAAAAAAA==",
+              "Title": "UsuariosAutenticacionController.cs",
+              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\Autenticacion\\UsuariosAutenticacionController.cs",
+              "RelativeDocumentMoniker": "FablabWebAPI\\Controllers\\Autenticacion\\UsuariosAutenticacionController.cs",
+              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\Autenticacion\\UsuariosAutenticacionController.cs",
+              "RelativeToolTip": "FablabWebAPI\\Controllers\\Autenticacion\\UsuariosAutenticacionController.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAD4v70AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T22:20:13.957Z",
+              "WhenOpened": "2025-11-10T01:11:50.57Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AutoMapperProfiles.cs",
+              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\MapperUtilities\\AutoMapperProfiles.cs",
+              "RelativeDocumentMoniker": "FablabWebAPI\\MapperUtilities\\AutoMapperProfiles.cs",
+              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\MapperUtilities\\AutoMapperProfiles.cs",
+              "RelativeToolTip": "FablabWebAPI\\MapperUtilities\\AutoMapperProfiles.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFcAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T01:10:51.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "FablabWebAPI\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "FablabWebAPI\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T01:07:05.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotificacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\NotificacionesController.cs",
+              "RelativeDocumentMoniker": "FablabWebAPI\\Controllers\\NotificacionesController.cs",
+              "ToolTip": "C:\\Users\\dguer\\source\\repos\\FablabWebAPI\\FablabWebAPI\\Controllers\\NotificacionesController.cs",
+              "RelativeToolTip": "FablabWebAPI\\Controllers\\NotificacionesController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowEkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T23:22:38.538Z"
             }
           ]
         }

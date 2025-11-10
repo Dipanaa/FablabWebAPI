@@ -2,10 +2,14 @@
 using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.ProyectosDtos;
 using FablabWebAPI.DTOs.UsuarioProyectoDtos;
+using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
+using FablabWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FablabWebAPI.Controllers
@@ -17,12 +21,14 @@ namespace FablabWebAPI.Controllers
         private readonly ApplicationDbContext context;
 
         private readonly IMapper mapper;
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private const string contenedor = "proyectos";
 
-        public ProyectosController(ApplicationDbContext context, IMapper autoMapper)
+        public ProyectosController(ApplicationDbContext context, IMapper autoMapper, IAlmacenadorArchivos almacenadorArchivos)
         {
             this.context = context;
             this.mapper = autoMapper;
-
+            this.almacenadorArchivos = almacenadorArchivos;
         }
 
 
@@ -51,22 +57,29 @@ namespace FablabWebAPI.Controllers
 
         //Proyectos con coleccion
         [HttpPost]
-        public async Task<ActionResult> Post(CreateProyectosDto proyectosDto)
+        public async Task<ActionResult> Post([FromForm] ProyectoFotoMTF proyectosFotoMTFDto)
         {
-            if(proyectosDto.Ids is null || proyectosDto.Ids.Count() == 0)
+            var proyectoDeserializado = JsonSerializer.Deserialize<CreateProyectosDto>(proyectosFotoMTFDto.DataProject, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            if(proyectoDeserializado is null)
             {
                 return BadRequest();
             }
 
-            var usuariosExistentes = await context.Usuario.Where(user => proyectosDto.Ids.Contains(user.Id)).Select(user => user.Id).ToListAsync();
+            if (proyectoDeserializado.Ids is null || proyectoDeserializado.Ids.Count() == 0)
+            {
+                return BadRequest();
+            }
 
-            if(usuariosExistentes.Count() != proyectosDto.Ids.Count())
+            var usuariosExistentes = await context.Usuario.Where(user => proyectoDeserializado.Ids.Contains(user.Id)).Select(user => user.Id).ToListAsync();
+
+            if(usuariosExistentes.Count() != proyectoDeserializado.Ids.Count())
             {
                 //TODO:poner error de validacion 
                 return NotFound();
             }
 
-            var proyectoUsuarioMappeado = mapper.Map<Proyectos>(proyectosDto);
+            var proyectoUsuarioMappeado = mapper.Map<Proyectos>(proyectoDeserializado);
 
             if (usuariosExistentes.Count() > 1)
             {
@@ -76,6 +89,11 @@ namespace FablabWebAPI.Controllers
                 }
             }
 
+            if (proyectosFotoMTFDto.ImgUrl is not null)
+            {
+                var urlImg = await almacenadorArchivos.Editar(proyectoUsuarioMappeado.ImgUrl, contenedor, proyectosFotoMTFDto.ImgUrl);
+                proyectoUsuarioMappeado.ImgUrl = urlImg;
+            }
 
             context.Add(proyectoUsuarioMappeado);
             await this.context.SaveChangesAsync();

@@ -9,6 +9,8 @@
 
         public string AreaAplicacion { get; set; }
 
+        public string? ImgUrl { get; set; }
+
         public DateTime? FechaInicio { get; set; }
     }
 }

@@ -10,6 +10,8 @@
 
         public DateTime? FechaInicio { get; set; }
 
+        public IFormFile? ImgUrl {  get; set; }
+
         public List<int> Ids { get; set; }
 
 
