@@ -94,7 +94,6 @@ namespace FablabWebAPI.Controllers.Autenticacion
         }
 
         [HttpPost("login")]
-
         public async Task<ActionResult<AutenticacionRespuestaDto>> login(CredencialesLoginDto credencialesLoginDto)
         {
             var usuario = await userManager.FindByEmailAsync(credencialesLoginDto.Email);
@@ -123,10 +122,8 @@ namespace FablabWebAPI.Controllers.Autenticacion
             
         }
 
-
-  
-
         [HttpGet("check-status")]
+        [Authorize]
         public async Task<ActionResult<AutenticacionRespuestaDto>> CheckearStatusToken()
         {
             var usuario = await servicioUsuarios.ObtenerUsuario();

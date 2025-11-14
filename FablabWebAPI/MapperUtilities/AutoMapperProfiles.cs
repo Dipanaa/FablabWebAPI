@@ -73,7 +73,10 @@ namespace FablabWebAPI.MapperUtilities
 
             CreateMap<Inventario, InventarioItemsDto>().ReverseMap();
 
-            //MAPPERS DE PRUEBAAA PARA FORMULARIOS DE INGRESO
+            CreateMap<InventarioPutItemDto, Inventario>().ReverseMap();
+
+
+            //MAPPERS FORMULARIOS DE INGRESO
 
             CreateMap<CredencialesRegistroDto, FormularioIngresoDto>();
 

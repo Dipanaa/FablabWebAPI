@@ -49,7 +49,7 @@ namespace FablabWebAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Put(InventarioItemsDto inventarioItemsDto,int id)
+        public async Task<ActionResult> Put(InventarioPutItemDto inventarioPutItemDto,int id)
         {
             var itemEncontrado = await context.Inventario.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -59,7 +59,7 @@ namespace FablabWebAPI.Controllers
                 return NotFound();
             }
 
-            mapper.Map(inventarioItemsDto, itemEncontrado);
+            mapper.Map(inventarioPutItemDto, itemEncontrado);
             context.Update(itemEncontrado);
             await context.SaveChangesAsync();
             return NoContent();

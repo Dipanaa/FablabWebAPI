@@ -45,7 +45,6 @@ namespace FablabWebAPI.Controllers
         [HttpPost("ingreso/{id:int}")]
         public async Task<ActionResult> Post(int id)
         {
-            logger.LogWarning($"Id entrante {id}");
 
             var formularioIngreso = await context.FormulariosIngreso.FirstOrDefaultAsync(fi => fi.Id == id);
 
@@ -74,11 +73,23 @@ namespace FablabWebAPI.Controllers
                 await context.FormulariosIngreso.Where(fi => fi.Id == formularioIngreso.Id).ExecuteDeleteAsync();
                 return Ok();
             }
-            logger.LogWarning($"Llego al final");
             return BadRequest();
+        }
 
+        [HttpDelete("ingreso/{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var formularioDelete = await context.FormulariosIngreso.Where(fi => fi.Id == id).ExecuteDeleteAsync();
+
+            if (formularioDelete.Equals(0))
+            {
+                return BadRequest();
+            }
+
+            return Ok();
 
         }
+
 
 
 

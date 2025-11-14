@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FablabWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3615d2acf08b4a0f4ad1ff30098ce4a3efcaf66a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0abec5c7c2e2af8a683831b2b4301a9106c1be08")]
 [assembly: System.Reflection.AssemblyProductAttribute("FablabWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FablabWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
