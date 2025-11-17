@@ -11,6 +11,5 @@
 
         public List<FormulariosIngreso> Formularios { get; set; } = new List<FormulariosIngreso>();
 
-
     }
 }

@@ -27,8 +27,12 @@ namespace FablabWebAPI.Datos
 
         public DbSet<UsuarioProyecto> UsuarioProyecto { get; set; }
 
+        public DbSet<HitoProyecto> HitoProyecto { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //Usuario proyecto
             builder.Entity<UsuarioProyecto>()
                 .HasKey(up => new { up.UsuarioId, up.ProyectosId });
 
@@ -42,8 +46,19 @@ namespace FablabWebAPI.Datos
                 .WithMany(up => up.Usuarios)
                 .HasForeignKey(up => up.ProyectosId);
 
+            //HitoProyecto
+            builder.Entity<HitoProyecto>()
+                .HasOne(hp => hp.Proyectos)
+                .WithMany(pro => pro.HitoProyectos)
+                .HasForeignKey(hp => hp.ProyectosId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             base.OnModelCreating(builder);
         }
+
+
+
+
 
 
 

@@ -15,6 +15,8 @@
 
         public List<UsuarioProyecto> Usuarios { get; set; } = [];
 
+        public List<HitoProyecto> HitoProyectos { get; set; } = [];
+
 
     }
 }

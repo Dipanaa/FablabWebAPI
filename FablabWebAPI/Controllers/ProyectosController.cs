@@ -36,7 +36,11 @@ namespace FablabWebAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<ProyectoConUsuariosDtos>> Get()
         {
-            var proyectos = await this.context.Proyectos.Include(pro => pro.Usuarios).ThenInclude(up => up.Usuario).ToListAsync();
+            var proyectos = await context.UsuarioProyecto
+                .Include(up => up.Proyectos)
+                .ThenInclude(pro => pro.HitoProyectos)
+                .Select(up => up.Proyectos)
+                .ToListAsync();
 
             var proyectosDto = mapper.Map<IEnumerable<ProyectoConUsuariosDtos>>(proyectos);
             return proyectosDto;
@@ -47,7 +51,13 @@ namespace FablabWebAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<IEnumerable<ProyectosDto>> Get(int id) 
         {
-            var proyectosDeUsuario = await context.UsuarioProyecto.Where(up => up.UsuarioId == id).Select(up => up.Proyectos).ToListAsync();
+            var proyectosDeUsuario = await context.UsuarioProyecto
+                .Include(up => up.Proyectos)
+                .ThenInclude(pro => pro.HitoProyectos)
+                .Where(up => up.UsuarioId == id)
+                .Select(up => up.Proyectos)
+                .ToListAsync();
+                
 
             var proyectosDto = mapper.Map<IEnumerable<ProyectosDto>>(proyectosDeUsuario);
 
@@ -134,6 +144,70 @@ namespace FablabWebAPI.Controllers
             return Ok();
 
         }
+
+        //Hitos de proyecto
+
+        //Recibimos el id del proyecto
+        [HttpPost("hitoproyecto/{id:int}")]
+        public async Task<ActionResult> PostHito(int id, PutHitoProyectoDto hitoProyectoDto)
+        {
+            var proyectoEncontrado = await context.Proyectos.FirstOrDefaultAsync(pro => pro.Id == id);
+
+            if(proyectoEncontrado is null)
+            {
+
+                return NotFound();
+
+            }
+
+            var hitoProyecto = mapper.Map<HitoProyecto>(hitoProyectoDto);
+
+            hitoProyecto.ProyectosId = id;
+
+            context.Add(hitoProyecto);
+            await context.SaveChangesAsync();
+
+            return Ok();
+            
+        }
+
+
+        //Recibimos el id del hito
+        [HttpPut("hitoproyecto/hito/{id:int}")]
+        public async Task<ActionResult> PutHito(int id, PutHitoProyectoDto putHitoProyectoDto)
+        {
+            var hitoProyecto = await context.HitoProyecto.FirstOrDefaultAsync(hp => hp.Id == id);
+
+            if(hitoProyecto is null)
+            {
+                return NotFound();
+            }
+
+            mapper.Map(putHitoProyectoDto, hitoProyecto);
+            await context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("hitoproyecto/hito/{id:int}")]
+        public async Task<ActionResult> DeleteHito(int id)
+        {
+            var hitoProyecto = await context.HitoProyecto.Where(hp => hp.Id == id).ExecuteDeleteAsync();
+
+            if (hitoProyecto.Equals(0))
+            {
+                return NotFound();
+            }
+
+            return Ok();
+
+
+        }
+
+
+
+
+
 
 
     }

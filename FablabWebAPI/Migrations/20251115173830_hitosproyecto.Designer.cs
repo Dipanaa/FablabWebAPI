@@ -4,6 +4,7 @@ using FablabWebAPI.Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FablabWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251115173830_hitosproyecto")]
+    partial class hitosproyecto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -532,8 +535,7 @@ namespace FablabWebAPI.Migrations
                 {
                     b.HasOne("FablabWebAPI.Entities.Proyectos", "Proyectos")
                         .WithMany("HitoProyectos")
-                        .HasForeignKey("ProyectosId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProyectosId");
 
                     b.Navigation("Proyectos");
                 });

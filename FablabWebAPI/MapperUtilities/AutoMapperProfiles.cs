@@ -53,11 +53,18 @@ namespace FablabWebAPI.MapperUtilities
                 .ForMember(pro => pro.ImgUrl, config => config.Ignore());
                 
 
-            CreateMap<Proyectos, ProyectosDto>();
+            CreateMap<Proyectos, ProyectosDto>()
+                .ForMember(dto => dto.HitoProyecto, config => config.MapFrom(pro => pro.HitoProyectos));
+
+            CreateMap<HitoProyectoDto, HitoProyecto>().ReverseMap();
+
+            CreateMap<PutHitoProyectoDto, HitoProyecto>().ReverseMap();
 
             //ProyectosConUsuarios
             CreateMap<Proyectos, ProyectoConUsuariosDtos>()
-                .ForMember(pcu => pcu.Usuarios, config => config.MapFrom(pro => pro.Usuarios.Select(up => up.Usuario)));
+                .ForMember(pcu => pcu.Usuarios, config => config.MapFrom(pro => pro.Usuarios.Select(up => up.Usuario)))
+                .ForMember(pcu => pcu.HitoProyecto, config => config.MapFrom(pro => pro.HitoProyectos));
+                
 
             //CreateMap<CreateProyectosDto, UsuarioProyecto>()
             //    .ForMember(up => up.Proyectos,
