@@ -7,6 +7,8 @@ C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\AutoMapper.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Azure.Core.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Azure.Identity.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Azure.Storage.Blobs.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Azure.Storage.Common.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\FluentValidation.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -38,12 +40,16 @@ C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\SixLabors.ImageSharp.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\SixLabors.ImageSharp.Web.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.ClientModel.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.Drawing.Common.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.IO.Hashing.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.Memory.Data.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.Runtime.Caching.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll

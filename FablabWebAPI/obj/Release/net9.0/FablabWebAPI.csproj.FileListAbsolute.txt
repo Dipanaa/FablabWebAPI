@@ -168,3 +168,10 @@ C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\refint\
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\FablabWebAPI.pdb
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\FablabWebAPI.genruntimeconfig.cache
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\ref\FablabWebAPI.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Azure.Storage.Blobs.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Azure.Storage.Common.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\SixLabors.ImageSharp.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\SixLabors.ImageSharp.Web.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\System.IO.Hashing.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\FablabWebAPI.MvcApplicationPartsAssemblyInfo.cs

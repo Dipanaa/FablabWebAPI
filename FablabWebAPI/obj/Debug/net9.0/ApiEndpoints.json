@@ -62,6 +62,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FablabWebAPI.Controllers.ChatIAController",
+    "Method": "GetChatData",
+    "RelativePath": "api/chatia",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FablabWebAPI.Controllers.GraficosController",
     "Method": "GetProyectoPorUsuario",
     "RelativePath": "api/graficos/proyectoporusuario",

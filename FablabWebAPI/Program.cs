@@ -1,4 +1,4 @@
-
+using Google.GenAI;
 using FablabWebAPI.Datos;
 using FablabWebAPI.Entities;
 using FablabWebAPI.Services;
@@ -17,7 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 //Servicios personalizados
 builder.Services.AddTransient<IServicioUsuarios,ServicioUsuarios>();
 builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenarArchivosDeImagenes>();
-    
+
+//Uso de Gemini
+builder.Services.AddTransient<IChatContexto, ChatContexto>();
+
 //FluentValidations Validadores de entidades
 
 builder.Services.AddScoped<IValidator<Noticias>, NoticiasValidator>();
@@ -83,14 +86,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlS
 
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dbcontext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-//    if (dbcontext.Database.IsRelational())
-//    {
-//        dbcontext.Database.Migrate();
-//    }
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var dbcontext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (dbcontext.Database.IsRelational())
+    {
+        dbcontext.Database.Migrate();
+    }
+}
 
 
 
