@@ -1,4 +1,5 @@
-﻿using FablabWebAPI.Services;
+﻿using Azure.Core;
+using FablabWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FablabWebAPI.Controllers
@@ -9,6 +10,10 @@ namespace FablabWebAPI.Controllers
     {
         private readonly IChatContexto chatContexto;
 
+        public static string contextoDatos = string.Empty;
+        public static string preguntaUsuario = string.Empty;
+        
+
         public ChatIAController(IChatContexto chatContexto)
         {
             this.chatContexto = chatContexto;
@@ -18,7 +23,8 @@ namespace FablabWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> GetChatData()
         {
-            return await chatContexto.ChatText();
+
+            return await chatContexto.ChatText("hola");
         }
 
 

@@ -1,20 +1,22 @@
 ﻿
+using Azure.Core;
 using DocumentFormat.OpenXml.Packaging;
-using System.Text;
-using System.Threading.Tasks;
 using Google.GenAI;
 using Google.GenAI.Types;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FablabWebAPI.Services
 {
     public class ChatContexto : IChatContexto
     {
         private string _rutaDatos = string.Empty;
+        private readonly IConfiguration configuration;
 
-        public ChatContexto(IWebHostEnvironment webHostEnvironment)
+        public ChatContexto(IWebHostEnvironment webHostEnvironment,IConfiguration configuration)
         {
             _rutaDatos = Path.Combine(webHostEnvironment.ContentRootPath, "DatosLaboratorioChat");
-
+            this.configuration = configuration;
         }
 
 
@@ -67,20 +69,35 @@ namespace FablabWebAPI.Services
             }
         }
 
-        public async Task<string> ChatText()
+        public async Task<string> ChatText(string? pregunta)
         {
+            var contextoDatos = await ObtenerContextoDeArchivosAsync();
+            var promptBase = $@"
+                Eres un asistente experto en el laboratorio.
+                Tu trabajo es responder las preguntas del usuario basándote ÚNICA Y EXCLUSIVAMENTE 
+                en la siguiente información extraída de los archivos del laboratorio.
+                No inventes información que no esté en este texto.
+                Si la respuesta no se encuentra en el texto, di 'No encontré esa información en mis archivos'.
 
-            // The client gets the API key from the environment variable `GEMINI_API_KEY`.
-            var client = new Client(apiKey: "AIzaSyCTS-CBYhTp6uUxPeijyVWpWy_C7-SP1BU");
+                --- CONTEXTO DE ARCHIVOS ---
+                {contextoDatos}
+                --- FIN DEL CONTEXTO ---
+
+                PREGUNTA DEL USUARIO:
+                ¿Cual es la vision del laboratorio?
+            ";
+
+
+            var client = new Client(apiKey: this.configuration["GOOGLE_API_KEY"]);
+
             var response = await client.Models.GenerateContentAsync(
-              model: "gemini-2.5-flash", contents: "Dime porque es bueno ser programador en 2025?"
+              model: "gemini-2.5-flash", contents: promptBase
             );
 
             return response.Candidates[0].Content.Parts[0].Text;
 
 
         }
-
 
     }
 }
