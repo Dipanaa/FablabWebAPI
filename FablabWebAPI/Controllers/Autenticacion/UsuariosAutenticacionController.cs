@@ -43,6 +43,14 @@ namespace FablabWebAPI.Controllers.Autenticacion
         [HttpPost("registro")]
         public async Task<ActionResult> RegistrarUsuario(CredencialesRegistroDto credencialesDto)
         {
+            var correoDuplicado = await userManager.FindByEmailAsync(credencialesDto.Email);
+
+            if(correoDuplicado is not null)
+            {
+                ModelState.AddModelError("error", "El email ya existe!");
+                return ValidationProblem(ModelState);
+            }
+
 
             var usuario = new Usuario
             {
@@ -117,13 +125,12 @@ namespace FablabWebAPI.Controllers.Autenticacion
             else
             {
 
-                return BadRequest(); //TODO: Error personalizado
+                return BadRequest(); 
             }
             
         }
 
         [HttpGet("check-status")]
-        [Authorize]
         public async Task<ActionResult<AutenticacionRespuestaDto>> CheckearStatusToken()
         {
             var usuario = await servicioUsuarios.ObtenerUsuario();

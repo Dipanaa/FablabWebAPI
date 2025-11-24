@@ -50,12 +50,13 @@ namespace FablabWebAPI.Controllers
 
             if(formularioIngreso is null)
             {
+   
                 return BadRequest();
             }
 
             var usuarioIngreso = new Usuario
             {
-                UserName = formularioIngreso.Nombre.Replace(" ", ""), //Reemplazar espacios
+                UserName = formularioIngreso.Nombre.Replace(" ", "")+formularioIngreso.Apellido, //Reemplazar espacios
                 Nombre = formularioIngreso.Nombre, //de lab
                 Email = formularioIngreso.Email,
                 CorreoInstitucional = formularioIngreso.Email, //de lab
@@ -72,6 +73,11 @@ namespace FablabWebAPI.Controllers
             {
                 await context.FormulariosIngreso.Where(fi => fi.Id == formularioIngreso.Id).ExecuteDeleteAsync();
                 return Ok();
+            }
+            foreach (var item in usuarioCreado.Errors)
+            {
+
+                logger.LogWarning(item.Description);
             }
             return BadRequest();
         }

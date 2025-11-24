@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using FablabWebAPI.DTOs.ChatIADto;
 using FablabWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,11 +21,22 @@ namespace FablabWebAPI.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<ActionResult<string>> GetChatData()
+        [HttpPost]
+        public async Task<ActionResult<ChatRespuestaDto>> PostChatData(ChatPreguntasDto chatPreguntasDto)
         {
+            if (chatPreguntasDto.Pregunta.Equals(""))
+            {
+                return BadRequest();
+            }
 
-            return await chatContexto.ChatText("hola");
+            var respuesta = await chatContexto.ChatText(chatPreguntasDto.Pregunta);
+
+            var respuestaDto = new ChatRespuestaDto
+            {
+                Respuesta = respuesta,
+            };
+
+            return respuestaDto; 
         }
 
 

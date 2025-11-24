@@ -36,10 +36,10 @@ namespace FablabWebAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<ProyectoConUsuariosDtos>> Get()
         {
-            var proyectos = await context.UsuarioProyecto
-                .Include(up => up.Proyectos)
-                .ThenInclude(pro => pro.HitoProyectos)
-                .Select(up => up.Proyectos)
+            var proyectos = await context.Proyectos
+                .Include(pro=> pro.Usuarios)
+                    .ThenInclude(up => up.Usuario)
+                .Include(pro=> pro.HitoProyectos)
                 .ToListAsync();
 
             var proyectosDto = mapper.Map<IEnumerable<ProyectoConUsuariosDtos>>(proyectos);
@@ -114,16 +114,17 @@ namespace FablabWebAPI.Controllers
 
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Put(int id, CreateProyectosDto proyectoConUsuariosDtos)
+        public async Task<ActionResult> Put(int id, PutProyectosDto putProyectosDto)
         {
-            var proyectoActualizacion = await context.Proyectos.Include(pro => pro.Usuarios).FirstOrDefaultAsync(pro => pro.Id == id);
+            var proyectoActualizacion = await context.Proyectos
+                .FirstOrDefaultAsync(pro => pro.Id == id);
 
             if (proyectoActualizacion is null)
             {
                 return NotFound();
             }
 
-            proyectoActualizacion = mapper.Map(proyectoConUsuariosDtos, proyectoActualizacion);
+            proyectoActualizacion = mapper.Map(putProyectosDto, proyectoActualizacion);
             await context.SaveChangesAsync();
              
             return NoContent();

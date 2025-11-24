@@ -63,15 +63,21 @@
   },
   {
     "ContainingType": "FablabWebAPI.Controllers.ChatIAController",
-    "Method": "GetChatData",
+    "Method": "PostChatData",
     "RelativePath": "api/chatia",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "chatPreguntasDto",
+        "Type": "FablabWebAPI.DTOs.ChatIADto.ChatPreguntasDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "FablabWebAPI.DTOs.ChatIADto.ChatRespuestaDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -64,7 +64,8 @@ namespace FablabWebAPI.MapperUtilities
             CreateMap<Proyectos, ProyectoConUsuariosDtos>()
                 .ForMember(pcu => pcu.Usuarios, config => config.MapFrom(pro => pro.Usuarios.Select(up => up.Usuario)))
                 .ForMember(pcu => pcu.HitoProyecto, config => config.MapFrom(pro => pro.HitoProyectos));
-                
+
+            CreateMap<Proyectos, PutProyectosDto>().ReverseMap();
 
             //CreateMap<CreateProyectosDto, UsuarioProyecto>()
             //    .ForMember(up => up.Proyectos,

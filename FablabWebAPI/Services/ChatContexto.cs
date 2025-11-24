@@ -78,15 +78,15 @@ namespace FablabWebAPI.Services
                 en la siguiente información extraída de los archivos del laboratorio.
                 No inventes información que no esté en este texto.
                 Si la respuesta no se encuentra en el texto, di 'No encontré esa información en mis archivos'.
+                Ademas puedes responder a saludos y necesito que del texto quites los *.
 
                 --- CONTEXTO DE ARCHIVOS ---
                 {contextoDatos}
                 --- FIN DEL CONTEXTO ---
 
                 PREGUNTA DEL USUARIO:
-                ¿Cual es la vision del laboratorio?
+                {pregunta}
             ";
-
 
             var client = new Client(apiKey: this.configuration["GOOGLE_API_KEY"]);
 
@@ -95,7 +95,6 @@ namespace FablabWebAPI.Services
             );
 
             return response.Candidates[0].Content.Parts[0].Text;
-
 
         }
 
