@@ -175,3 +175,15 @@ C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\SixLabo
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\SixLabors.ImageSharp.Web.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\System.IO.Hashing.dll
 C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\obj\Release\net9.0\FablabWebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\DatosLaboratorioChat\MisionVision_FabLab_Maipu.docx
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\CsvHelper.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\DocumentFormat.OpenXml.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Google.Apis.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Google.Apis.Auth.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Google.Apis.Core.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Google.GenAI.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\Newtonsoft.Json.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\System.IO.Packaging.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\System.Management.dll
+C:\Users\dguer\source\repos\FablabWebAPI\FablabWebAPI\bin\Release\net9.0\runtimes\win\lib\net7.0\System.Management.dll

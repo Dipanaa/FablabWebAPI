@@ -59,7 +59,7 @@ namespace FablabWebAPI.Controllers
             return Ok();
         }
 
-        //Este Post es con foto, verificar su uso en movil, ESTE ENDPOINT ES SOLO DE TESTING
+        //Este Post es con foto, verificar su uso en movil
         [HttpPut("perfil/{id:int}")]
         public async Task<ActionResult> PostUsuarioFoto([FromForm] UsuarioFotoMTF usuarioFotoMTF,int id)
         {

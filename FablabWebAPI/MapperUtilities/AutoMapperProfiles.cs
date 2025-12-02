@@ -42,7 +42,9 @@ namespace FablabWebAPI.MapperUtilities
 
             //Edicion de usuario con foto
             CreateMap<UsuarioPerfilPutDto, Usuario>()
-                .ForMember(user => user.ImgUrl, config => config.Ignore());
+                .ForMember(user => user.ImgUrl, config => config.Ignore())
+                .ForMember(user => user.PhoneNumber, config => config.MapFrom(uppd => uppd.Telefono));
+            
 
             //MAPPERS DE PROYECTOS
 

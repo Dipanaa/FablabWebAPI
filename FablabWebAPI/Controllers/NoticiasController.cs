@@ -33,6 +33,17 @@ namespace FablabWebAPI.Controllers
             return listaNoticiaDto;
         }
 
+        [HttpGet("noticiasestado")]
+        public async Task<IEnumerable<NoticiaDto>> GetNoticiasConEstado()
+        {
+
+            var lista = await this.context.Noticias.Where(not => not.Estado == "Activo").ToListAsync();
+            var listaNoticiaDto = mapper.Map<IEnumerable<NoticiaDto>>(lista);
+            return listaNoticiaDto;
+        }
+
+
+
         [HttpPost]
         public async Task<ActionResult> Post(Noticias noticias)
         {
@@ -63,7 +74,7 @@ namespace FablabWebAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Put(int id, Noticias noticia)
+        public async Task<ActionResult> Put(int id, NoticiaDto noticia)
         {
             var entityfind = await this.context.Noticias.AnyAsync((entity)=> entity.Id == id);
 
@@ -71,7 +82,10 @@ namespace FablabWebAPI.Controllers
             {
                 return BadRequest();
             }
-            context.Update(noticia);
+
+            var noticiaMappeada = mapper.Map<Noticias>(noticia);
+
+            context.Update(noticiaMappeada);
             await this.context.SaveChangesAsync();
             return Ok();
         }

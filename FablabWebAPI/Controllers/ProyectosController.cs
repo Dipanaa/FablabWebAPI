@@ -5,6 +5,7 @@ using FablabWebAPI.DTOs.UsuarioProyectoDtos;
 using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
 using FablabWebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -57,7 +58,6 @@ namespace FablabWebAPI.Controllers
                 .Where(up => up.UsuarioId == id)
                 .Select(up => up.Proyectos)
                 .ToListAsync();
-                
 
             var proyectosDto = mapper.Map<IEnumerable<ProyectosDto>>(proyectosDeUsuario);
 
