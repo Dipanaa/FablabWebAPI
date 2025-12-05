@@ -8,6 +8,8 @@
 
         public string AreaAplicacion { get; set; }
 
+        public string Estado { get; set; } = "En proceso";
+
         public DateTime? FechaInicio { get; set; }
 
     }

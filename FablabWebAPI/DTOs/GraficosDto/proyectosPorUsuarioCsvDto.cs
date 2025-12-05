@@ -1,6 +1,8 @@
-﻿namespace FablabWebAPI.Entities
+﻿using FablabWebAPI.Entities;
+
+namespace FablabWebAPI.DTOs.GraficosDto
 {
-    public class Proyectos
+    public class proyectosPorUsuarioCsvDto
     {
         public int Id { get; set; }
         public string Titulo { get; set; }
@@ -12,13 +14,6 @@
         public DateTime? FechaInicio { get; set; }
 
         public string? Estado { get; set; } = "En proceso";
-
-        public string? ImgUrl { get; set; }
-
-        public List<UsuarioProyecto> Usuarios { get; set; } = [];
-
-        public List<HitoProyecto> HitoProyectos { get; set; } = [];
-
 
     }
 }

@@ -1,0 +1,8 @@
+Id,Titulo,Categoria,DescripcionProyecto,AreaAplicacion,FechaInicio,Estado
+39,Proyecto Arduino 1 - Display de 7 segmentos controlado a distanciaa,Electrónica,"Para este proyecto con Arduino únicamente se van a utilizar los botones numéricos del 0 al 9 del mando a distancia. Por otro lado, respecto al display de 7 segmentos, cabe destacar que para este proyecto no se va a utilizar el Dot Point (DP), que es el punto que se suele mostrar en la parte inferior derecha de estos displays.",Ingenieria,20-11-2025 0:00:00,Finalizado
+40,aaaaaaaaaaaa,Corte Láser,aaaaaaaaaaaa,aaaaaaaaaaaaa,08-10-2025 0:00:00,En proceso
+41,aaaaaaaaaaaaaaaa,Electrónica,aaaaaaaaaaaaaaaa,aaaaa,23-10-2025 0:00:00,En proceso
+42,aaaaaaaaaaaaaaa,Impresión 3D,aaaaaaaaaaaaaaaaaaaaaaaaaaa,aaaaaaaaaaaaa,13-08-2025 0:00:00,En proceso
+43,aaaaaaaaaaaaaaa,Impresión 3D,aaaaaaaaaaaaaaaaaaaaaaa,aaaaaaaaaaaaa,17-12-2025 0:00:00,En proceso
+44,aaaaaaaaaaaaa,Corte Láser,aaaaaaaaaaaa,aaaaaaaaaa,16-01-2025 0:00:00,En proceso
+45,AAAAAAAAAAAA,Impresión 3D,AAAAAAAAAAAAAAAAAAAAAA,aaaaaaaaaa,09-04-2025 0:00:00,En proceso

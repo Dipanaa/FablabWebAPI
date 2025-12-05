@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FablabWebAPI.DTOs.Autenticacion;
+using FablabWebAPI.DTOs.GraficosDto;
 using FablabWebAPI.DTOs.InventariosController;
 using FablabWebAPI.DTOs.NoticiasDtos;
 using FablabWebAPI.DTOs.NotificacionesDtos;
@@ -61,6 +62,10 @@ namespace FablabWebAPI.MapperUtilities
             CreateMap<HitoProyectoDto, HitoProyecto>().ReverseMap();
 
             CreateMap<PutHitoProyectoDto, HitoProyecto>().ReverseMap();
+
+            CreateMap<Proyectos, proyectosPorUsuarioCsvDto>().ReverseMap();
+
+
 
             //ProyectosConUsuarios
             CreateMap<Proyectos, ProyectoConUsuariosDtos>()

@@ -89,6 +89,26 @@
   },
   {
     "ContainingType": "FablabWebAPI.Controllers.GraficosController",
+    "Method": "ActualizarCsv",
+    "RelativePath": "api/graficos/actualizar-csv-ppu",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FablabWebAPI.Controllers.GraficosController",
+    "Method": "GetProyectoPorFecha",
+    "RelativePath": "api/graficos/proyectoporfecha",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FablabWebAPI.Controllers.GraficosController",
     "Method": "GetProyectoPorUsuario",
     "RelativePath": "api/graficos/proyectoporusuario",
     "HttpMethod": "GET",

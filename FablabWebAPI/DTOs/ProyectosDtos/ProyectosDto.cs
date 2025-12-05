@@ -11,6 +11,9 @@
 
         public string? ImgUrl { get; set; }
 
+        public string Estado { get; set; }
+
+
         public DateTime? FechaInicio { get; set; }
 
         public List<HitoProyectoDto>? HitoProyecto { get; set; } = [];

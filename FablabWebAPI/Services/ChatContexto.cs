@@ -1,5 +1,6 @@
 ﻿
 using Azure.Core;
+using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Packaging;
 using Google.GenAI;
 using Google.GenAI.Types;
@@ -26,7 +27,7 @@ namespace FablabWebAPI.Services
 
             if (!Directory.Exists(_rutaDatos))
             {
-                return "Error al enncontrar la ruta de datos";
+                return "Error al encontrar la ruta de datos";
             }
 
             var archivos = Directory.GetFiles(_rutaDatos);
@@ -39,6 +40,11 @@ namespace FablabWebAPI.Services
                     contextoDatos.AppendLine(await LeerDocxAsync(archivo));
                 }
 
+                if (archivo.EndsWith(".csv"))
+                {
+                    contextoDatos.AppendLine(await LeerCsvAsync(archivo));
+
+                }
             }
 
             return contextoDatos.ToString();
@@ -46,9 +52,9 @@ namespace FablabWebAPI.Services
         }
 
 
-        public Task<string> LeerCsvAsync(string ruta)
+        public async Task<string> LeerCsvAsync(string ruta)
         {
-            throw new NotImplementedException();
+            return await File.ReadAllTextAsync(ruta);
         }
 
         public async Task<string> LeerDocxAsync(string ruta)
@@ -77,6 +83,7 @@ namespace FablabWebAPI.Services
                 Tu trabajo es responder las preguntas del usuario basándote ÚNICA Y EXCLUSIVAMENTE 
                 en la siguiente información extraída de los archivos del laboratorio.
                 No inventes información que no esté en este texto.
+                Tambien tienes la capacidad de inferir la informacion de los csv en base a sus datos.
                 Si la respuesta no se encuentra en el texto, di 'No encontré esa información en mis archivos'.
                 Ademas puedes responder a saludos y necesito que del texto quites los *.
 
