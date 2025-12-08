@@ -3,6 +3,7 @@ using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.InventariosController;
 using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,13 @@ namespace FablabWebAPI.Controllers
         private readonly ApplicationDbContext context;
 
         private readonly IMapper mapper;
+        private readonly IValidator<Inventario> validator;
 
-        public InventarioController(ApplicationDbContext context, IMapper autoMapper)
+        public InventarioController(ApplicationDbContext context, IMapper autoMapper, IValidator<Inventario> validator)
         {
             this.context = context;
             this.mapper = autoMapper;
-
+            this.validator = validator;
         }
 
 
@@ -41,6 +43,15 @@ namespace FablabWebAPI.Controllers
         public async Task<ActionResult> Post(InventarioItemsDto inventarioItemsDto)
         {
             var inventarioItemMappeado = mapper.Map<Inventario>(inventarioItemsDto);
+
+            var itemValidado = await validator.ValidateAsync(inventarioItemMappeado);
+
+            if (!itemValidado.IsValid)
+            {
+                return BadRequest();
+            }
+
+
             context.Add(inventarioItemMappeado);
             await this.context.SaveChangesAsync();
 
@@ -60,6 +71,14 @@ namespace FablabWebAPI.Controllers
             }
 
             mapper.Map(inventarioPutItemDto, itemEncontrado);
+
+            var itemValidado = await validator.ValidateAsync(itemEncontrado);
+
+            if (!itemValidado.IsValid)
+            {
+                return BadRequest();
+            }
+
             context.Update(itemEncontrado);
             await context.SaveChangesAsync();
             return NoContent();

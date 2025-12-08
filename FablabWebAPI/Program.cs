@@ -22,8 +22,10 @@ builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenarArchivosDeImagenes>
 builder.Services.AddTransient<IChatContexto, ChatContexto>();
 
 //FluentValidations Validadores de entidades
-
 builder.Services.AddScoped<IValidator<Noticias>, NoticiasValidator>();
+builder.Services.AddScoped<IValidator<Inventario>, InventarioValidator>();
+builder.Services.AddScoped<IValidator<Usuario>, UsuarioValidator>();
+
 
 //Servicio identity con configuracion de entidades
 builder.Services.AddIdentityCore<Usuario>()
@@ -86,14 +88,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlS
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbcontext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    if (dbcontext.Database.IsRelational())
-    {
-        dbcontext.Database.Migrate();
-    }
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbcontext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//    if (dbcontext.Database.IsRelational())
+//    {
+//        dbcontext.Database.Migrate();
+//    }
+//}
 
 
 

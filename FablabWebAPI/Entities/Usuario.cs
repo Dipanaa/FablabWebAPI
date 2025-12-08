@@ -6,16 +6,16 @@ namespace FablabWebAPI.Entities
 {
     public class Usuario : IdentityUser<int>
     {
-
+        [Required]
         public string Nombre { get; set; }
-
+        [Required]
         public string Apellido { get; set; }
-
+        [Required]
         public string Rut { get; set; }
 
         [EmailAddress]
         public string CorreoInstitucional { get; set; }
-
+        [Required]
         public string Carrera { get; set; }
 
         [Unicode(false)]

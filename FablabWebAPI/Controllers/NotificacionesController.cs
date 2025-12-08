@@ -3,6 +3,7 @@ using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.Autenticacion;
 using FablabWebAPI.DTOs.NotificacionesDtos;
 using FablabWebAPI.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,16 @@ namespace FablabWebAPI.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<Usuario> userManager;
         private readonly ILogger<NotificacionesController> logger;
+        private readonly IValidator<Usuario> validator;
 
         public NotificacionesController(ApplicationDbContext context, IMapper autoMapper,
-            UserManager<Usuario> userManager, ILogger<NotificacionesController> logger)
+            UserManager<Usuario> userManager, ILogger<NotificacionesController> logger, IValidator<Usuario> validator)
         {
             this.context = context;
             this.mapper = autoMapper;
             this.userManager = userManager;
             this.logger = logger;
+            this.validator = validator;
         }
 
         //Get de formularios de ingreso
@@ -66,6 +69,13 @@ namespace FablabWebAPI.Controllers
                 PhoneNumber = formularioIngreso.Telefono.ToString(),
 
             };
+
+            var usuarioValidado = await validator.ValidateAsync(usuarioIngreso);
+
+            if (!usuarioValidado.IsValid)
+            {
+                return BadRequest();
+            }
 
             var usuarioCreado = await userManager.CreateAsync(usuarioIngreso, formularioIngreso.Contrasena);
 

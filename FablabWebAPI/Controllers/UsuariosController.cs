@@ -3,6 +3,8 @@ using FablabWebAPI.Datos;
 using FablabWebAPI.DTOs.UsuariosDtos;
 using FablabWebAPI.Entities;
 using FablabWebAPI.Services;
+using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,10 +25,12 @@ namespace FablabWebAPI.Controllers
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         private readonly ILogger<UsuariosController> logger;
         private readonly IServicioUsuarios servicioUsuarios;
+        private readonly IValidator<Usuario> validator;
         private const string contenedor = "usuarios";
 
         public UsuariosController(ApplicationDbContext context, IMapper autoMapper, UserManager<Usuario> userManager,
-            IAlmacenadorArchivos almacenadorArchivos, ILogger<UsuariosController> logger, IServicioUsuarios servicioUsuarios) {
+            IAlmacenadorArchivos almacenadorArchivos, ILogger<UsuariosController> logger, IServicioUsuarios servicioUsuarios,
+            IValidator<Usuario> validator) {
 
             this.context = context;
             this.mapper = autoMapper;
@@ -34,6 +38,7 @@ namespace FablabWebAPI.Controllers
             this.almacenadorArchivos = almacenadorArchivos;
             this.logger = logger;
             this.servicioUsuarios = servicioUsuarios;
+            this.validator = validator;
         }
 
         
@@ -52,6 +57,7 @@ namespace FablabWebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Post(Usuario usuario)
         {
             context.Add(usuario);
@@ -78,6 +84,14 @@ namespace FablabWebAPI.Controllers
             }
 
             mapper.Map(usuarioDeserializado, usuario);
+
+            var usuarioValidado = await validator.ValidateAsync(usuario);
+
+            if(!usuarioValidado.IsValid)
+            {
+                return BadRequest();
+            }
+
 
             if (usuarioFotoMTF.ImgUrl is not null)
             {                
