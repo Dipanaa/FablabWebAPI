@@ -86,9 +86,9 @@ namespace FablabWebAPI.Controllers
             mapper.Map(usuarioDeserializado, usuario);
 
             var usuarioValidado = await validator.ValidateAsync(usuario);
-
             if(!usuarioValidado.IsValid)
             {
+                logger.LogWarning("Error por esta zona");
                 return BadRequest();
             }
 

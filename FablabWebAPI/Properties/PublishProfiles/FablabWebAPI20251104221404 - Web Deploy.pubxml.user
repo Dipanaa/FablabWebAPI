@@ -6,7 +6,12 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
 <Project>
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <History>True|2025-12-05T18:20:35.2297347Z||;True|2025-12-02T17:12:36.1442211-03:00||;True|2025-11-23T22:55:25.9242393-03:00||;True|2025-11-16T23:29:54.7473869-03:00||;True|2025-11-04T22:42:01.0267306-03:00||;</History>
+    <History>True|2025-12-09T22:01:23.3003433Z||;True|2025-12-08T20:59:06.2927660-03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
+  <ItemGroup>
+    <AzureDBConnectionStrings Include="Data Source=fablabwebapidbserver.database.windows.net,1433;Initial Catalog=FablabWebAPI_db;Authentication=ActiveDirectoryManagedIdentity" />
+    <AzureDBConnectionStrings Include="REDACTED" />
+    <AzureDBConnectionStrings Include="Server=tcp:fablabwebapidbserver.database.windows.net;Authentication=Active Directory Default;Database=FablabWebAPI_db" />
+  </ItemGroup>
 </Project>

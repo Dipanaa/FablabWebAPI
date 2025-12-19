@@ -14,7 +14,7 @@ namespace FablabWebAPI.Validators
         {
             RuleFor(user => user.Rut).Matches(RutValidador, RegexOptions.IgnoreCase | RegexOptions.Multiline);
             RuleFor(user => user.Email).Matches(EmailValidador, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-            RuleFor(user => user.Email).Matches(PhoneValidador, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            RuleFor(user => user.PhoneNumber).Matches(PhoneValidador, RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
 
         }
